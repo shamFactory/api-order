@@ -1,5 +1,8 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 module.exports = {
-    DB: 'mongodb://'+process.env.MONGODB_URL+'/'+process.env.MONGODB_DB,
+    DB: `mongodb://${process.env.MONGO_URL}/${process.env.MONGO_DB}`,
     port: process.env.PORT,
 
     api_host: process.env.API_HOST,

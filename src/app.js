@@ -1,27 +1,34 @@
 import express from 'express';
 import httpi from 'http';
-import globalConfig from './config/globalConfig';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import globalConfig from './config/globalConfig';
+import dbConfig from './config/dbConfig';
+import { ok, fail } from './utils/reponse';
+import indexRouter from './routes/index';
 
 const app = express();
 const http = httpi.Server(app);
-
-
-mongoose.Promise = global.Promise;
-mongoose.connect(globalConfig.DB, { useNewUrlParser: true }).then(
-  () => {console.log('Database is connected') },
-  err => { console.log('Can not connect to the database'+ err)}
-);
-mongoose.set('useFindAndModify', false);
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get("/", (req, res) => {
-    res.send("Hello from Node.js app \n");
+app.use('/api', indexRouter);
+
+app.use((req, res, next) => {
+	if (req.url == '/')
+		return ok(res)({})
+
+  return fail(res)("'Route '"+req.url+"' Not found.", 404)
+});
+
+// 500 - Any server error
+app.use((err, req, res, next) => {
+  console.log(err)
+  console.log(next)
+  return fail(res)(err, 500)
 });
 
 const PORT = globalConfig.port || 4000;
