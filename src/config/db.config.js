@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import globalConfig from './globalConfig';
+import * as globalConfig from './global.config';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(globalConfig.DB, {

@@ -3,10 +3,10 @@ import httpi from 'http';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import globalConfig from './config/globalConfig';
-import dbConfig from './config/dbConfig';
-import { ok, fail } from './utils/reponse';
-import indexRouter from './routes/index';
+import * as globalConfig from './config/global.config';
+import dbConfig from './config/db.config';
+import { ok, fail } from './utils/reponse.util';
+import indexRouter from './routes/index.router';
 
 const app = express();
 const http = httpi.Server(app);

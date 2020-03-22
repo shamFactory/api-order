@@ -1,4 +1,4 @@
-import { ok } from '../utils/reponse';
+import { ok } from '../utils/reponse.util';
 
 class IndexController {
 
