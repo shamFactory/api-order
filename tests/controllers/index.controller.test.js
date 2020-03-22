@@ -1,6 +1,6 @@
-var supertest = require("supertest");
-var should = require("should");
-var config = require('../../src/config/test.config');
+import supertest from "supertest";
+import should from "should";
+import * as config from '../../src/config/test.config';
 
 // This agent refers to PORT where program is runninng.
 let url = config.uri;
