@@ -5,17 +5,20 @@ class BaseRepository {
     this.key = key
   }
 
-  findAll () {
+  findAll (select) {
+    select = select || '-_id -__v';
     return this.model
-      .find({}, '-_id -__v');
+      .find({}, select);
   }
 
-  find (id) {
+  find (id, select) {
+    select = select || '-_id -__v';
+    
     const filter = {}
     filter[this.key] = id
 
     return this.model
-      .findOne(filter, '-_id -__v');
+      .findOne(filter, select);
   }
 
   create (data) {

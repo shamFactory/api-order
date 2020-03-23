@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 //create schema
 let Articles = new Schema({
+    _id:{
+        type: Schema.Types.ObjectId,
+    },
     codart: {
         type: Number,
         required: true,

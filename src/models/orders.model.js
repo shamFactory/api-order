@@ -8,9 +8,9 @@ let Orders = new Schema({
         required: true,
         unique: true
     },
-    productId: {
-        type: Number,
-        required: true
+    productId:{
+        type: Schema.Types.ObjectId, 
+        ref: 'Articles'
     },
     quantity: {
         type: Number,
