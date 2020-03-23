@@ -25,6 +25,7 @@ class OrderService extends DataService {
 
         const promises = [];
         let text = '';
+        let saveOrders = [];
         await split.map( orderText => {
             const params = orderText.split(' of #');
             if (params.length == 2)
@@ -34,14 +35,14 @@ class OrderService extends DataService {
         await promises.reduce(async (previousPromise, nextAsyncFunction) => {
             await previousPromise;
             return nextAsyncFunction.then(order => {
-                console.log(`Created new order #${order.ticketId}.`);
+                saveOrders.push(order);
                 text += `Created new order #${order.ticketId}. `;
             }).catch(err => {
-                console.log(`Error: ${err}.`);
                 text += `Error: ${err}. `;
             })
           }, Promise.resolve())
-
+        
+        this.addCsv(saveOrders, 'orders.csv');
         res.json({ 'fulfillmentText': text} );
     }
 
