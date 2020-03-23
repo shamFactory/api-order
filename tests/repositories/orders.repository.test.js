@@ -19,12 +19,12 @@ const rand = Math.floor(Math.random() * (max - min + 1) + min);
 describe("New Order test", () => {
     it("should return 1 new order", (done) => {
         repository.findAll().countDocuments().then(amount => {
-            console.log('amount:'+amount);
             service.create(1, 10, '987654321').then(res => {
-                should.equal(res.amount, 10);
+                should.equal(res.quantity, 10);
                 should.equal(res.phone, '987654321');
                 done();
             }).catch(err => {
+                console.log(err)
                 done();
             })
         });

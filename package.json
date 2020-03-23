@@ -36,6 +36,7 @@
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.9.0",
+    "chai": "^4.2.0",
     "mocha": "^7.1.1",
     "nodemon": "^1.19.0",
     "prettier": "^1.17.1",
